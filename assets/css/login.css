@@ -1,0 +1,217 @@
+/* Import base theme variables */
+@import 'styles.css';
+
+/* Login-specific styles */
+.login-container {
+    width: 400px;
+}
+
+/* General Styles */
+body {
+    font-size: 13px;
+    transition: background-color 0.3s, color 0.3s;
+    background-color: var(--content-bg);
+    color: var(--text);
+}
+
+
+
+/* Horizontal mode with slim header */
+.horizontal .header-bar.slim + .top-nav + #mainContent {
+    height: calc(100vh - 30px);
+    margin-top: 60px;
+}
+
+/* Horizontal mode with slim top nav */
+.horizontal .header-bar + .top-nav.slim + #mainContent {
+    height: calc(100vh - 70px);
+    margin-top: 32px; /* Height of slim top nav */
+}
+
+/* Horizontal mode with both slim */
+.horizontal .header-bar.slim + .top-nav.slim + #mainContent {
+    height: calc(100vh - 30px);
+    margin-top: 32px;
+}
+
+/* Search styling */
+.search-input {
+    border: 1px solid var(--input-border);
+    color: var(--input-text);
+    padding: 0.3rem 0.75rem;
+    height: 32px;
+}
+
+.search-icon {
+    color: var(--search-icon);
+}
+
+.search-input::placeholder {
+    color: var(--muted-text);
+}
+
+.search-input {
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    border-radius: 12px 12px 0 0;
+    box-shadow: none;
+    border-bottom: none;
+}
+
+.search-panel {
+    border-radius: 0 0 12px 12px;
+    margin-top: -8px;
+    border: 1px solid var(--border-color);
+}
+
+/* Update sidebar background */
+.sidebar {
+    background-color: var(--bg);
+}
+
+/* Update header background */
+.header-bar {
+    background-color: var(--bg);
+}
+
+li {
+    list-style: none;
+}
+
+.separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+.separator-line {
+    flex: 1;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.separator-text {
+    padding: 0 1rem;
+    color: var(--separator-text);
+    background: none;
+}
+
+/* Theme-sensitive elements */
+.card {
+    background-color: var(--bg);
+    border: 1px solid var(--card-border);
+    position: relative;
+    z-index: 1 !important;
+}
+
+.theme-text {
+    color: var(--text);
+}
+
+.text-muted {
+    color: var(--muted-text) !important;
+}
+
+.theme-button {
+    color: var(--text);
+    border-color: var(--input-border);
+}
+
+.theme-button:hover {
+    background-color: var(--hover-bg);
+}
+
+.form-label {
+    color: var(--text);
+}
+
+.input-group-text {
+    background-color: var(--hover-bg);
+    border-color: var(--input-border);
+    color: var(--text);
+}
+
+.form-control {
+    background-color: var(--content-bg);
+    border-color: var(--input-border);
+    color: var(--text);
+}
+
+.form-control:focus {
+    background-color: var(--content-bg);
+    border-color: var(--input-border);
+    color: var(--text);
+}
+
+.form-check-label {
+    color: var(--text);
+}
+
+.separator-text {
+    color: var(--separator-text);
+    background: none;
+}
+
+.separator-line {
+    border-color: var(--border-color);
+}
+
+#mainContent {
+    padding-top: 120px !important;
+    padding-left: 260px
+}
+
+#mainContent.collapsed {
+    padding-left: 70px;
+}
+
+.horizontal #mainContent,
+.hidden-mode  #mainContent {
+    padding-left: 10px
+}
+
+/* Center login card in horizontal mode */
+/*
+.horizontal #mainContent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    margin-top: 28px !important;
+    padding-top: 60px !important;
+}
+*/
+/* Adjust height when header is in slim mode */
+.horizontal .header-bar.slim + .top-nav + #mainContent {
+    min-height: calc(100vh - 90px); /* Account for slim header + top nav */
+}
+
+/* Remove default margin/padding from inner containers in login page */
+.horizontal #mainContent .d-flex.align-items-center {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+/* Ensure the card width stays consistent */
+/*
+.horizontal #mainContent .card {
+    margin: 0 auto;
+    width: 100%;
+    max-width: 400px;
+}
+*/
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    /* main {
+        height: calc(100vh - 90px);
+    } */
+
+    .horizontal #mainContent {
+        height: calc(100vh - 90px);
+        margin-top: 53px; /* Larger top nav on mobile */
+    }
+}

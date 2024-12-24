@@ -1,0 +1,1175 @@
+/* Layout Constants */
+:root {
+    --primary-rgb: 13, 110, 253;
+    --primary: #0d6efd;
+    --danger: #dc3545;
+}
+
+/* Light Theme */
+:root, [data-bs-theme=light] {
+    --bg-color: #ffffff;
+    --text-color: #212529;
+    --border-color: rgba(0, 0, 0, 0.2);
+    --hover-bg: rgba(0, 0, 0, 0.05);
+    --panel-shadow: rgba(0, 0, 0, 0.1);
+    --theme-toggle-bg: #ffebee;
+    --theme-icon-color: #ffc107;
+}
+
+/* Dark Theme */
+[data-bs-theme=dark] {
+    --bg-color: #0a0d14;
+    --text-color: #e6e9f0;
+    --border-color: rgba(230, 233, 240, 0.2);
+    --hover-bg: rgba(230, 233, 240, 0.05);
+    --panel-shadow: rgba(0, 0, 0, 0.4);
+    --theme-toggle-bg: #212121;
+    --theme-icon-color: #2196f3;
+}
+
+/* Update existing styles to use variables */
+.header-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1040;
+    background-color: var(--bg-color);
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 0.6rem 2rem !important;
+}
+
+.dark-mode .header-bar {
+    border-bottom-color: var(--border-color);
+}
+
+/* Title Styles */
+.title-container {
+    font-size: 1rem;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+}
+
+.title-container i {
+    font-size: 1.1rem;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: relative;
+    border-radius: 8px;
+    padding: 0.5rem;
+}
+
+.light-mode .dark-icon,
+.dark-mode .light-icon {
+    display: none;
+}
+
+/* Light mode background */
+.light-mode .theme-toggle span {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Dark mode background */
+.dark-mode .theme-toggle span {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Optional: Add hover effect */
+.light-mode .theme-toggle:hover span {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+.dark-mode .theme-toggle:hover span {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Social Panel Styles */
+.social-container {
+    position: relative;
+}
+
+.social-toggle {
+    padding: 0.5rem;
+}
+
+.social-toggle i {
+    font-size: 1rem;
+}
+
+.social-panel {
+    position: absolute;
+    top: calc(100% + 15px);
+    right: 0;
+    background: var(--bg-color);
+    color: var(--text-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    padding: 1rem;
+    display: none;
+    z-index: 1061;
+    min-width: 320px;
+}
+
+.dark-mode .social-panel {
+    background: #151923;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+}
+
+.panel-arrow {
+    position: absolute;
+    top: -8px;
+    right: 15px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid var(--bg-color);
+}
+
+.dark-mode .panel-arrow {
+    border-bottom-color: var(--dark-bg);
+}
+
+.social-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.social-item {
+    text-align: center;
+}
+
+.social-item a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: inherit;
+    text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.social-item a:hover {
+    background-color: var(--hover-bg);
+}
+
+.dark-mode .social-item a:hover {
+    background-color: var(--hover-bg);
+}
+
+.social-item i {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.social-item span {
+    font-size: 0.7rem;
+}
+
+/* Show panel when active */
+.social-container.active .social-panel {
+    display: block;
+}
+
+/* User Panel Styles */
+.user-container {
+    position: relative;
+}
+.user-container .user-name-container {
+    display: none;
+}
+.user-toggle {
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.user-avatar {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.user-avatar-large {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.user-panel {
+    position: absolute;
+    top: calc(100% + 15px);
+    right: 0;
+    background: var(--bg-color);
+    color: var(--text-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    padding: 1.5rem;
+    display: none;
+    z-index: 1000;
+    min-width: 250px;
+    border: 1px solid var(--border-color);
+}
+
+.dark-mode .user-panel {
+    background: var(--dark-bg);
+    border-color: var(--border-color);
+}
+
+.user-info {
+    text-align: center;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 1rem;
+}
+
+.dark-mode .user-info {
+    border-bottom-color: var(--border-color);
+}
+
+.user-name {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.user-email {
+    margin: 0.25rem 0 0;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.user-links {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.user-link {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    color: inherit;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.user-link:hover {
+    background-color: var(--hover-bg);
+}
+
+.dark-mode .user-link:hover {
+    background-color: var(--hover-bg);
+}
+
+.user-link i {
+    margin-right: 0.75rem;
+    font-size: 1rem;
+}
+
+/* Show panel when active */
+.user-container.active .user-panel {
+    display: block;
+}
+
+/* Notification Panel Styles */
+.notification-container {
+    position: relative;
+}
+
+.notification-toggle {
+    position: relative;
+    padding: 0.5rem;
+}
+
+.notification-toggle i {
+    font-size: 1rem;
+}
+
+.notification-badge {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: var(--danger);
+    color: white;
+    border-radius: 50%;
+    padding: 0.25rem 0.4rem;
+    font-size: 0.75rem;
+    min-width: 1.2rem;
+    height: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.notification-panel {
+    position: absolute;
+    top: calc(100% + 15px);
+    right: 0;
+    background: var(--bg-color);
+    color: var(--text-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    padding: 1rem;
+    display: none;
+    z-index: 1061;
+    width: 320px;
+    max-height: 480px;
+    display: none;
+    border: 1px solid var(--border-color);
+}
+
+.dark-mode .notification-panel {
+    background: var(--dark-bg);
+    border-color: var(--border-color);
+}
+
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid var(--border-color);
+    margin-bottom: 0.75rem;
+}
+
+.dark-mode .notification-header {
+    border-bottom-color: var(--border-color);
+}
+
+.notification-list {
+    overflow-y: auto;
+    max-height: 360px;
+}
+
+.notification-item {
+    display: flex;
+    padding: 0.75rem;
+    text-decoration: none;
+    color: inherit;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+    margin-bottom: 0.5rem;
+}
+
+.notification-item:hover {
+    background-color: var(--hover-bg);
+}
+
+.dark-mode .notification-item:hover {
+    background-color: var(--hover-bg);
+}
+
+.notification-item.unread {
+    background-color: rgba(var(--primary-rgb), 0.1);
+}
+
+.notification-item.unread:hover {
+    background-color: rgba(var(--primary-rgb), 0.15);
+}
+
+.notification-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(var(--primary-rgb), 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.75rem;
+    flex-shrink: 0;
+}
+
+.notification-icon i {
+    font-size: 1.1rem;
+    color: var(--primary);
+}
+
+.notification-content {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.notification-text {
+    margin: 0;
+    font-size: 0.85rem;
+    line-height: 1.4;
+}
+
+.notification-time {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+}
+
+.notification-footer {
+    padding-top: 0.75rem;
+    border-top: 1px solid var(--border-color);
+    margin-top: 0.75rem;
+    text-align: center;
+}
+
+.dark-mode .notification-footer {
+    border-top-color: var(--border-color);
+}
+
+/* Show panel when active */
+.notification-container.active .notification-panel {
+    display: block;
+}
+  /* Add color for header icons in light mode */
+.light-mode .header-icon {
+    color: #495057;
+}
+
+/* Add color for header icons in dark mode */
+.dark-mode .header-icon {
+    color: #e9ecef;
+}
+
+/* Optional: Add hover effect for both modes */
+.header-icon:hover {
+    opacity: 0.8;
+}
+
+/* Search Container Styles */
+.search-container {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.search-input {
+    border-radius: 20px;
+    transition: all 0.3s ease;
+}
+
+.search-input:focus {
+    box-shadow: 0 0 0 0.25rem rgba(var(--primary-rgb), 0.25);
+}
+
+.search-panel {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: var(--bg-color);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 1rem;
+    display: none;
+    z-index: 1061;
+}
+
+.dark-mode .search-panel {
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.search-section {
+    margin-bottom: 1rem;
+}
+
+.search-section:last-child {
+    margin-bottom: 0;
+}
+
+.search-section-title {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+    padding: 0 0.5rem;
+}
+
+.search-item {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem;
+    color: inherit;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.2s;
+}
+
+.search-item:hover {
+    background-color: var(--hover-bg);
+}
+
+.search-item i {
+    margin-right: 0.75rem;
+    color: var(--text-muted);
+}
+
+.search-item-text {
+    flex-grow: 1;
+}
+
+.search-item-remove {
+    color: var(--text-muted);
+    padding: 0.25rem;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.search-item:hover .search-item-remove {
+    opacity: 1;
+}
+
+/* Show panel when active */
+.search-container.active .search-panel {
+    display: block;
+}
+
+/* Hide search container on mobile */
+@media (max-width: 1024px) {
+    .search-container {
+        display: none;
+    }
+
+    /* Adjust column widths for mobile */
+    .header-bar .col-3 {
+        width: 50%;
+    }
+
+    .header-bar .col-6 {
+        display: none;
+    }
+}
+
+@media (max-width: 575px) {
+    .title-container {
+        display: none;
+    }
+}
+
+/* Add size classes */
+.w-80 {
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-toggle span {
+    transition: background-color 0.2s;
+}
+
+/* Theme Toggle Button Colors */
+[data-bs-theme=light] .theme-toggle .light-icon {
+    display: flex;
+    color: #ffc107; /* Yellow color for sun icon in light mode */
+    background-color: #ffebee; /* Light red background */
+}
+
+[data-bs-theme=light] .theme-toggle .dark-icon {
+    display: none;
+}
+
+[data-bs-theme=dark] .theme-toggle .light-icon {
+    display: none;
+}
+
+[data-bs-theme=dark] .theme-toggle .dark-icon {
+    display: flex;
+    color: #2196f3; /* Blue color for moon icon in dark mode */
+    background-color: #212121; /* Dark background */
+}
+
+/* Optional: Add hover effects */
+[data-bs-theme=light] .theme-toggle:hover .light-icon {
+    background-color: #ffe0e0; /* Slightly lighter red on hover */
+}
+
+[data-bs-theme=dark] .theme-toggle:hover .dark-icon {
+    background-color: #2c2c2c; /* Slightly lighter dark background on hover */
+}
+
+/* Remove focus outline/border from header buttons */
+.theme-toggle:focus,
+.notification-toggle:focus,
+.social-toggle:focus,
+.user-toggle:focus,
+.theme-toggle:active,
+.notification-toggle:active,
+.social-toggle:active,
+.user-toggle:active {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Optional: If you want to remove the effect from all buttons in header */
+.header-bar .btn:focus,
+.header-bar .btn:active {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
+}
+
+/* Update notification panel styles */
+.notification-panel {
+    background: var(--bg-color);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.dark-mode .notification-panel {
+    background: var(--dark-bg);
+    border-color: var(--border-color);
+}
+
+.notification-header {
+    border-bottom-color: var(--border-color);
+}
+
+.notification-item:hover {
+    background-color: var(--hover-bg);
+}
+
+.dark-mode .notification-item.unread {
+    background-color: rgba(var(--primary-rgb), 0.15);
+}
+
+.dark-mode .notification-item.unread:hover {
+    background-color: rgba(var(--primary-rgb), 0.2);
+}
+
+/* Update user panel styles */
+.user-panel {
+    background: var(--bg-color);
+    z-index: 1061;
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+}
+
+.dark-mode .user-panel {
+    background: var(--dark-bg);
+    border-color: var(--border-color);
+}
+
+.user-info {
+    border-bottom-color: var(--border-color);
+}
+
+.user-email {
+    color: var(--text-muted);
+}
+
+.user-link:hover {
+    background-color: var(--hover-bg);
+}
+
+/* Update panel arrows for both light and dark modes */
+.panel-arrow {
+    border-bottom-color: var(--bg-color);
+}
+
+.dark-mode .panel-arrow {
+    border-bottom-color: var(--dark-bg);
+}
+
+/* Update notification icon backgrounds */
+.dark-mode .notification-icon {
+    background: rgba(var(--primary-rgb), 0.15);
+}
+
+/* Update notification time color */
+.notification-time {
+    color: var(--text-muted);
+}
+
+/* Update panel links color */
+.notification-footer .btn-link,
+.user-link {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.notification-header .btn-link {
+    color: var(--primary);
+}
+
+/* Slim Mode Styles */
+.header-bar.slim {
+    padding: 0.1rem 2rem !important;
+}
+
+.slim .search-container {
+    display: none;
+}
+
+.slim .title-container {
+    font-size: 0.9rem;
+}
+
+.slim .w-80 {
+    width: 28px;
+    height: 28px;
+}
+.slim #mobileMenuBtn {
+   padding-top: 0;
+   padding-bottom: 0;
+}
+.slim .notification-toggle,
+.slim .social-toggle,
+.slim .theme-toggle {
+    padding: 0 0.35rem;
+}
+
+.slim .user-toggle {
+    height: 32px;
+    padding: 0 12px;
+}
+
+.slim .notification-badge {
+    padding: 0.2rem 0.35rem;
+    font-size: 0.7rem;
+    min-width: 1rem;
+    height: 1rem;
+}
+
+/* Adjust column widths for slim mode */
+.slim .col-3 {
+    width: auto;
+}
+
+.slim .col-2 {
+    width: auto;
+}
+
+/* Slim mode specific styles */
+.header-bar.slim .title-container .title-text {
+    font-size: 0.85rem;
+}
+
+.header-bar.slim .title-container .title-text::after {
+    content: " slim";
+}
+
+.header-bar.slim .title-container .bi {
+    display: none;
+}
+
+/* Make header elements smaller in slim mode */
+.header-bar.slim .header-icon {
+    font-size: 0.9rem;
+}
+
+.header-bar.slim .user-panel {
+    padding: 0.7rem;
+}
+
+.header-bar.slim .user-toggle .user-avatar {
+    display: none;
+}
+
+.header-bar.slim .user-name-container {
+    display: flex;
+    align-items: center;
+}
+
+
+/* Right Sidebar Toggle Button - Updated Styles */
+.right-sidebar-toggle {
+    position: fixed;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+    padding: 8px;
+    z-index: 1060;
+    cursor: pointer;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    color: var(--text-color);
+    transition: background-color 0.2s ease;
+}
+
+.right-sidebar-toggle:hover {
+    background-color: var(--hover-bg);
+}
+
+.dark-mode .right-sidebar-toggle {
+    background: var(--dark-bg);
+    box-shadow: -2px 0 5px rgba(0,0,0,0.3);
+}
+
+/* Right Sidebar */
+.right-sidebar {
+    position: fixed;
+    right: -300px;
+    top: 0;
+    width: 300px;
+    height: 100%;
+    background: var(--bg-color);
+    border-left: 1px solid var(--border-color);
+    z-index: 1060;
+    transition: right 0.3s ease;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+}
+
+.right-sidebar.show {
+    right: 0;
+}
+
+.dark-mode .right-sidebar {
+    background: var(--dark-bg);
+}
+
+.right-sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.right-sidebar-close {
+    background: none;
+    border: none;
+    color: var(--text-color);
+    padding: 4px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s;
+}
+
+.right-sidebar-close:hover {
+    background-color: var(--hover-bg);
+}
+
+.right-sidebar-close i {
+    font-size: 1.1rem;
+}
+
+.right-sidebar-content {
+    padding: 1rem;
+}
+
+.setting-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+}
+
+/* Remove duplicate setting item when only one toggle exists */
+.setting-item:not(:last-child) {
+    border-bottom: 1px solid var(--border-color);
+}
+
+/* Update Slim Mode User Toggle Styles */
+.header-bar.slim .user-toggle {
+    width: auto;
+    height: 23px;
+    padding: 0 12px;
+    border-radius: 16px;
+    display: flex;
+    align-items: center;
+    background-color: var(--hover-bg);
+    color: var(--text-color);
+    border: 1px solid var(--border-color);
+    transition: background-color 0.2s ease;
+}
+
+/* Light mode specific styles */
+.light-mode .header-bar.slim .user-toggle {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.light-mode .header-bar.slim .user-toggle:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+}
+
+/* Dark mode specific styles */
+.dark-mode .header-bar.slim .user-toggle {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .header-bar.slim .user-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.header-bar.slim .user-toggle .user-avatar {
+    
+    display: none;
+}
+
+.header-bar.slim .user-name-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.header-bar.slim .user-name-container .user-name {
+    font-size: 0.85rem;
+    margin: 0;
+    color: var(--text-color);
+}
+
+.header-bar.slim .user-name-container .bi-chevron-down {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* Adjust user panel position in slim mode */
+.header-bar.slim .user-panel {
+    top: calc(100% + 8px);
+    background-color: var(--bg-color);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.dark-mode .header-bar.slim .user-panel {
+    background-color: var(--dark-bg);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Add text labels for theme toggle in slim mode */
+.header-bar.slim .theme-toggle span{
+    border-radius: 20px !important;
+    padding: 0 8px;
+    width: 100%;
+    height: 22px;
+}
+.header-bar.slim .theme-toggle i{
+    display: flex;
+    gap: 4px;
+    align-items: center;
+}
+
+.header-bar.slim .theme-toggle i::after {
+    content: 'Light';
+    font-size: 0.75rem;
+    color: var(--text-color);
+}
+
+.dark-mode .header-bar.slim .theme-toggle i::after {
+    content: 'Dark';
+}
+
+/* Hide notification badge in slim mode */
+.header-bar.slim .notification-badge {
+    display: none;
+}
+
+/* Layout Options Styles - Updated */
+.layout-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* Create 2 columns */
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.layout-option {
+    background: none;
+    border: 2px solid transparent;
+    border-radius: 8px;
+    padding: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 120px;
+}
+
+.layout-option:hover {
+    background-color: var(--hover-bg);
+}
+
+.layout-option.active {
+    border-color: var(--primary);
+}
+
+.layout-preview {
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+    aspect-ratio: 4/3;
+}
+
+.preview-header {
+    height: 20%;
+    background: var(--bg-color);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.preview-header.slim {
+    height: 12%;
+}
+
+.preview-content {
+    display: flex;
+    height: 80%;
+}
+
+.preview-sidebar {
+    width: 30%;
+    background: var(--bg-color);
+    border-right: 1px solid var(--border-color);
+}
+
+.preview-sidebar.slim {
+    width: 15%;
+}
+
+.preview-main {
+    flex: 1;
+    background: var(--hover-bg);
+}
+
+.layout-option span {
+    display: block;
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text-color);
+    margin-top: 0.25rem;
+}
+
+/* Dark mode adjustments */
+.dark-mode .layout-preview {
+    background: var(--dark-bg);
+    border-color: var(--border-color);
+}
+
+.dark-mode .preview-header,
+.dark-mode .preview-sidebar {
+    background: var(--dark-bg);
+    border-color: var(--border-color);
+}
+
+.dark-mode .preview-main {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* Update setting item styles */
+.setting-item {
+    padding: 1rem 0;
+}
+
+.setting-item span {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+}
+
+/* Search Modal Styles */
+.search-input-container{
+    width: 100%;
+}
+.search-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    display: none;
+}
+
+.search-modal.show {
+    display: block;
+}
+
+.search-modal-content {
+    position: absolute;
+    top: 80px; /* Adjust based on header height */
+    left: 50%;
+    padding: 1rem;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 600px;
+    background: var(--bg-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-color);
+}
+
+.dark-mode .search-modal-content {
+    background: var(--dark-bg);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.search-modal .search-input {
+    border: none;
+    border-radius: 8px;
+    padding: 1rem 3rem;
+    width: 100%;
+    background: var(--bg-color);
+    color: var(--text-color);
+}
+
+.search-modal .search-panel {
+    position: static;
+    display: block;
+    border: none;
+}
+
+.search-modal .search-icon {
+    left: 1rem;
+}
+
+.search-modal .close-icon {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--text-muted);
+    z-index: 1;
+}
+
+/* Hide search container in horizontal mode */
+.horizontal .search-container {
+    display: none;
+}
+
+/* Show search icon in horizontal mode */
+.horizontal .search-icon-toggle {
+    display: flex !important;
+}
+
+/* Search icon toggle button */
+.search-icon-toggle {
+    display: none;
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--text-color);
+}
+
+/* Hide search container in slim mode */
+.header-bar.slim .search-container {
+    display: none;
+}
+
+/* Show search icon in slim mode */
+.header-bar.slim .search-icon-toggle {
+    display: flex !important;
+}
+
+/* Search icon toggle button styles */
+.search-icon-toggle {
+    display: none;  /* Hidden by default */
+    padding: 0.5rem;
+    background: none;
+    border: none;
+    color: var(--text-color);
+}
+
+/* Optional: Add hover effect */
+.search-icon-toggle:hover {
+    background-color: var(--hover-bg);
+    border-radius: 4px;
+}
+ 

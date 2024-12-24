@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/2.1.8/css/dataTables.bootstrap5.css" rel="stylesheet">
+    <link href="assets/css/header.css" rel="stylesheet">
+    <link href="assets/css/sidebar.css" rel="stylesheet">
+    <!-- <link href="assets/css/styles.css" rel="stylesheet"> -->
+    <link href="assets/css/login.css" rel="stylesheet">
+</head>
+
+
+
+<body class="light-mode horizontal">
+    <div class="container-fluid">
+        <div class="row">
+            <header class="col-12 header-bar slim">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div class="col-2 d-flex align-items-center">
+                        <button id="mobileMenuBtn" class="d-md-none me-2">
+                            <i class="bi bi-list"></i>
+                        </button>
+                        <div class="title-container">
+                            <i class="bi bi-house"></i>
+                            <span class="ms-2 title-text">Dashboard</span>
+                        </div>
+                    </div>
+                    <div class="col-8" id="middle">
+                        <div class="search-container position-relative">
+                            <i
+                                class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 search-icon"></i>
+                            <input type="search" class="form-control ps-5 search-input" placeholder="Search...">
+                            <div class="search-panel">
+                                <div class="search-section">
+                                    <div class="search-section-title">Recent Searches</div>
+                                    <a href="#" class="search-item">
+                                        <i class="bi bi-clock-history"></i>
+                                        <span class="search-item-text">Dashboard overview</span>
+                                        <i class="bi bi-x search-item-remove"></i>
+                                    </a>
+                                    <a href="#" class="search-item">
+                                        <i class="bi bi-clock-history"></i>
+                                        <span class="search-item-text">User settings</span>
+                                        <i class="bi bi-x search-item-remove"></i>
+                                    </a>
+                                </div>
+                                <div class="search-section">
+                                    <div class="search-section-title">Suggested</div>
+                                    <a href="#" class="search-item">
+                                        <i class="bi bi-star"></i>
+                                        <span class="search-item-text">Profile settings</span>
+                                    </a>
+                                    <a href="#" class="search-item">
+                                        <i class="bi bi-star"></i>
+                                        <span class="search-item-text">Notification preferences</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2 text-center d-flex justify-content-end align-items-center">
+                        <button class="btn theme-toggle me-2" id="themeToggle">
+                            <span class="rounded-circle w-80 h-80 light-icon">
+                                <i class="bi bi-sun-fill light-icon header-icon"></i>
+                            </span>
+                            <span class="rounded-circle w-80 h-80 dark-icon">
+                                <i class="bi bi-moon-fill dark-icon header-icon"></i>
+                            </span>
+                        </button>
+                        <div class="notification-container me-2">
+                            <button class="btn notification-toggle" id="notificationToggle">
+                                <i class="bi bi-bell header-icon"></i>
+                                <span class="notification-badge">3</span>
+                            </button>
+                            <div class="notification-panel">
+                                <div class="panel-arrow"></div>
+                                <div class="notification-header">
+                                    <h6 class="mb-0">Notifications</h6>
+                                    <button class="btn btn-link btn-sm p-0" id="markAllRead">Mark all as read</button>
+                                </div>
+                                <div class="notification-list">
+                                    <a href="#" class="notification-item unread">
+                                        <div class="notification-icon">
+                                            <i class="bi bi-chat-dots"></i>
+                                        </div>
+                                        <div class="notification-content">
+                                            <p class="notification-text">New message from Jane Smith</p>
+                                            <span class="notification-time">2 minutes ago</span>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="notification-item unread">
+                                        <div class="notification-icon">
+                                            <i class="bi bi-heart"></i>
+                                        </div>
+                                        <div class="notification-content">
+                                            <p class="notification-text">John Doe liked your post</p>
+                                            <span class="notification-time">1 hour ago</span>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="notification-item unread">
+                                        <div class="notification-icon">
+                                            <i class="bi bi-person-plus"></i>
+                                        </div>
+                                        <div class="notification-content">
+                                            <p class="notification-text">New follower: Mike Johnson</p>
+                                            <span class="notification-time">3 hours ago</span>
+                                        </div>
+                                    </a>
+                                    <a href="#" class="notification-item">
+                                        <div class="notification-icon">
+                                            <i class="bi bi-star"></i>
+                                        </div>
+                                        <div class="notification-content">
+                                            <p class="notification-text">Your post was featured</p>
+                                            <span class="notification-time">Yesterday</span>
+                                        </div>
+                                    </a>
+                                </div>
+                                <div class="notification-footer">
+                                    <a href="#" class="btn-link">View all notifications</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="social-container me-2">
+                            <button class="btn social-toggle" id="socialToggle">
+                                <i class="bi bi-grid-3x3-gap-fill header-icon"></i>
+                            </button>
+                            <div class="social-panel" id="socialPanel">
+                                <div class="panel-arrow"></div>
+                                <div class="social-grid">
+                                    <div class="social-item">
+                                        <a href="#" title="Google">
+                                            <i class="bi bi-google"></i>
+                                            <span>Google</span>
+                                        </a>
+                                    </div>
+                                    <div class="social-item">
+                                        <a href="#" title="Cloud">
+                                            <i class="bi bi-cloud"></i>
+                                            <span>Cloud</span>
+                                        </a>
+                                    </div>
+                                    <div class="social-item">
+                                        <a href="#" title="Slack">
+                                            <i class="bi bi-slack"></i>
+                                            <span>Slack</span>
+                                        </a>
+                                    </div>
+                                    <div class="social-item">
+                                        <a href="#" title="Drive">
+                                            <i class="bi bi-hdd-network"></i>
+                                            <span>Drive</span>
+                                        </a>
+                                    </div>
+                                    <div class="social-item">
+                                        <a href="#" title="Github">
+                                            <i class="bi bi-github"></i>
+                                            <span>Github</span>
+                                        </a>
+                                    </div>
+                                    <div class="social-item">
+                                        <a href="#" title="Calendar">
+                                            <i class="bi bi-calendar3"></i>
+                                            <span>Calendar</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="user-container me-2">
+                            <button class="btn user-toggle" id="userToggle">
+                                <img src="assets/img/team/40x40/1.webp" alt="User" class="user-avatar">
+                                <div class="user-name-container">
+                                    <h5 class="user-name">John Doe</h5>
+                                    <i class="bi bi-chevron-down"></i>
+                                </div>
+                            </button>
+                            <div class="user-panel" id="userPanel">
+                                <div class="panel-arrow"></div>
+                                <div class="user-info">
+                                    <img src="assets/img/team/40x40/1.webp" alt="User" class="user-avatar-large">
+                                    <h5 class="user-name">John Doe</h5>
+                                    <p class="user-email">john.doe@example.com</p>
+                                </div>
+                                <div class="user-links">
+                                    <a href="#" class="user-link">
+                                        <i class="bi bi-person"></i>
+                                        <span>Profile</span>
+                                    </a>
+                                    <a href="#" class="user-link">
+                                        <i class="bi bi-gear"></i>
+                                        <span>Settings</span>
+                                    </a>
+                                    <a href="#" class="user-link text-danger">
+                                        <i class="bi bi-box-arrow-right"></i>
+                                        <span>Sign Out</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="sidebar" id="sidebar">
+                <div class="sidebar-content">
+                    <ul class="tree-view">
+                        <li>
+                            <a href="#" class="tree-item">
+                                <i class="bi bi-house"></i>
+                                <span class="item-name">Dashboard</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="#" class="tree-item">
+                                        <i class="bi bi-graph-up"></i>
+                                        <span class="item-name">Analytics</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="tree-item">
+                                        <i class="bi bi-speedometer2"></i>
+                                        <span class="item-name">Performance</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="tree-item">
+                                <i class="bi bi-people"></i>
+                                <span class="item-name">User Management</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="#" class="tree-item">
+                                        <i class="bi bi-person-plus"></i>
+                                        <span class="item-name">Add Users</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="tree-item">
+                                        <i class="bi bi-person-lines-fill"></i>
+                                        <span class="item-name">User List</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="tree-item">
+                                        <i class="bi bi-shield-check"></i>
+                                        <span class="item-name">Roles & Permissions</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="tree-item">
+                                <i class="bi bi-file-earmark-text"></i>
+                                <span class="item-name">Content</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="#" class="tree-item">
+                                        <i class="bi bi-file-plus"></i>
+                                        <span class="item-name">Create Post</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="tree-item">
+                                        <i class="bi bi-files"></i>
+                                        <span class="item-name">All Posts</span>
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a href="#" class="tree-item">
+                                                <i class="bi bi-file-earmark-text"></i>
+                                                <span class="item-name">Pages</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#" class="tree-item">
+                                        <i class="bi bi-tags"></i>
+                                        <span class="item-name">Categories</span>
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a href="#" class="tree-item">
+                                                <i class="bi bi-tag"></i>
+                                                <span class="item-name">Manage Tags</span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="tree-item">
+                                                <i class="bi bi-bookmark"></i>
+                                                <span class="item-name">Bookmarks</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="tree-item">
+                                <i class="bi bi-bar-chart"></i>
+                                <span class="item-name">Reports</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="#" class="tree-item">
+                                        <i class="bi bi-graph-up-arrow"></i>
+                                        <span class="item-name">Sales Report</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="tree-item">
+                                        <i class="bi bi-people-fill"></i>
+                                        <span class="item-name">User Activity</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="tree-item">
+                                        <i class="bi bi-clock-history"></i>
+                                        <span class="item-name">History</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <hr class="sidebar-divider">
+                        <li>
+                            <a href="#" class="tree-item">
+                                <i class="bi bi-gear"></i>
+                                <span class="item-name">Settings</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="#" class="tree-item">
+                                        <i class="bi bi-person-gear"></i>
+                                        <span class="item-name">Profile Settings</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="tree-item">
+                                        <i class="bi bi-bell"></i>
+                                        <span class="item-name">Notifications</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="tree-item">
+                                        <i class="bi bi-shield"></i>
+                                        <span class="item-name">Security</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="tree-item">
+                                        <i class="bi bi-palette"></i>
+                                        <span class="item-name">Appearance</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#" class="tree-item">
+                                <i class="bi bi-question-circle"></i>
+                                <span class="item-name">Help & Support</span>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="#" class="tree-item">
+                                        <i class="bi bi-book"></i>
+                                        <span class="item-name">Documentation</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="tree-item">
+                                        <i class="bi bi-chat-dots"></i>
+                                        <span class="item-name">Contact Support</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="tree-item">
+                                        <i class="bi bi-info-circle"></i>
+                                        <span class="item-name">FAQs</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div class="collapse-container">
+                    <hr class="sidebar-divider">
+                    <button class="btn collapse-btn" id="collapseBtn">
+                        <i class="bi bi-box-arrow-in-left"></i>
+                        <i class="bi bi-box-arrow-right" style="display: none;"></i>
+                        <span class="collapse-text">Collapsed View</span>
+                    </button>
+                </div>
+            </div>
+
+            <main class="" id="mainContent" >
+
+                <div class="w-100">
+                    <div class="row justify-content-center">
+                        <div class=" login-container">
+                            <div class="card shadow-sm">
+                                <div class="card-body p-4">
+                                    <div class="text-center mb-4 theme-text">
+                                        <i class="bi bi-house fs-1"></i>
+                                        <h4 class="mb-0">Sign In</h4>
+                                        <p class="text-muted mt-2">Get access to your account</p>
+                                    </div>
+
+                                    <div class="social-login mb-4">
+                                        <button
+                                            class="btn btn-outline-secondary w-100 mb-2 social-btn theme-button">
+                                            <i class="bi bi-google me-2"></i>Sign in with Google
+                                        </button>
+                                        <button class="btn btn-outline-secondary w-100 social-btn theme-button">
+                                            <i class="bi bi-facebook me-2"></i>Sign in with Facebook
+                                        </button>
+                                    </div>
+
+                                    <div class="separator mb-4">
+                                        <div class="separator-line"></div>
+                                        <span class="separator-text">or</span>
+                                        <div class="separator-line"></div>
+                                    </div>
+
+                                    <form>
+                                        <div class="mb-3">
+                                            <label class="form-label" for="email">Email address</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <i class="bi bi-envelope"></i>
+                                                </span>
+                                                <input class="form-control" id="email" type="email"
+                                                    placeholder="name@example.com" />
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <label class="form-label" for="password">Password</label>
+                                            <div class="input-group">
+                                                <span class="input-group-text">
+                                                    <i class="bi bi-lock"></i>
+                                                </span>
+                                                <input class="form-control" id="password" type="password"
+                                                    placeholder="Password" />
+                                                <button class="btn btn-outline-secondary" type="button"
+                                                    id="togglePassword">
+                                                    <i class="bi bi-eye"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <div class="row mb-3">
+                                            <div class="col">
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        id="rememberMe" />
+                                                    <label class="form-check-label" for="rememberMe">Remember
+                                                        me</label>
+                                                </div>
+                                            </div>
+                                            <div class="col text-end">
+                                                <a href="#" class="text-decoration-none">Forgot Password?</a>
+                                            </div>
+                                        </div>
+
+                                        <div class="mb-3">
+                                            <button class="btn btn-primary w-100" type="submit">Sign In</button>
+                                        </div>
+                                    </form>
+
+                                    <div class="text-center">
+                                        <a href="#" class="text-decoration-none ms-1">Create an account</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <div class="card my-4 mx-auto w-100">
+                    <div class="card-header"><h4>Data Tables</h4></div>
+                    <div class="card-body">
+                        <table id="example" class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Office</th>
+                                    <th>Age</th>
+                                    <th>Start date</th>
+                                    <th>Salary</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Tiger Nixon</td>
+                                    <td>System Architect</td>
+                                    <td>Edinburgh</td>
+                                    <td>61</td>
+                                    <td>2011-04-25</td>
+                                    <td>$320,800</td>
+                                </tr>
+                                <tr>
+                                    <td>Garrett Winters</td>
+                                    <td>Accountant</td>
+                                    <td>Tokyo</td>
+                                    <td>63</td>
+                                    <td>2011-07-25</td>
+                                    <td>$170,750</td>
+                                </tr>
+                                <tr>
+                                    <td>Ashton Cox</td>
+                                    <td>Junior Technical Author</td>
+                                    <td>San Francisco</td>
+                                    <td>66</td>
+                                    <td>2009-01-12</td>
+                                    <td>$86,000</td>
+                                </tr>
+                                <tr>
+                                    <td>Cedric Kelly</td>
+                                    <td>Senior Javascript Developer</td>
+                                    <td>Edinburgh</td>
+                                    <td>22</td>
+                                    <td>2012-03-29</td>
+                                    <td>$433,060</td>
+                                </tr>
+                                <tr>
+                                    <td>Airi Satou</td>
+                                    <td>Accountant</td>
+                                    <td>Tokyo</td>
+                                    <td>33</td>
+                                    <td>2008-11-28</td>
+                                    <td>$162,700</td>
+                                </tr>
+                                <tr>
+                                    <td>Brielle Williamson</td>
+                                    <td>Integration Specialist</td>
+                                    <td>New York</td>
+                                    <td>61</td>
+                                    <td>2012-12-02</td>
+                                    <td>$372,000</td>
+                                </tr>
+                                <tr>
+                                    <td>Herrod Chandler</td>
+                                    <td>Sales Assistant</td>
+                                    <td>San Francisco</td>
+                                    <td>59</td>
+                                    <td>2012-08-06</td>
+                                    <td>$137,500</td>
+                                </tr>
+                                <tr>
+                                    <td>Rhona Davidson</td>
+                                    <td>Integration Specialist</td>
+                                    <td>Tokyo</td>
+                                    <td>55</td>
+                                    <td>2010-10-14</td>
+                                    <td>$327,900</td>
+                                </tr>
+                                <tr>
+                                    <td>Colleen Hurst</td>
+                                    <td>Javascript Developer</td>
+                                    <td>San Francisco</td>
+                                    <td>39</td>
+                                    <td>2009-09-15</td>
+                                    <td>$205,500</td>
+                                </tr>
+                                <tr>
+                                    <td>Sonya Frost</td>
+                                    <td>Software Engineer</td>
+                                    <td>Edinburgh</td>
+                                    <td>23</td>
+                                    <td>2008-12-13</td>
+                                    <td>$103,600</td>
+                                </tr>
+                                <tr>
+                                    <td>Jena Gaines</td>
+                                    <td>Office Manager</td>
+                                    <td>London</td>
+                                    <td>30</td>
+                                    <td>2008-12-19</td>
+                                    <td>$90,560</td>
+                                </tr>
+                                <tr>
+                                    <td>Quinn Flynn</td>
+                                    <td>Support Lead</td>
+                                    <td>Edinburgh</td>
+                                    <td>22</td>
+                                    <td>2013-03-03</td>
+                                    <td>$342,000</td>
+                                </tr>
+
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Position</th>
+                                    <th>Office</th>
+                                    <th>Age</th>
+                                    <th>Start date</th>
+                                    <th>Salary</th>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                </div>
+
+
+
+                <div class="card mb-4 mx-auto" style="max-width: 80%">
+                    <div class="card-header"><h4>Form Components</h4></div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 mx-auto" style="width: 80%">
+                                <div class="mb-3">
+                                    <label class="form-label" for="customFile">File input example</label>
+                                    <input class="form-control" id="customFile" type="file" />
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="formFileDisabled">Disabled file input example</label>
+                                    <input class="form-control" id="formFileDisabled" type="file" disabled="disabled" />
+                                </div>
+                                <div class="mb-3">
+                                    <label class="form-label" for="formFileMultiple">Multiple files input example</label>
+                                    <input class="form-control" id="formFileMultiple" type="file" multiple="multiple" />
+                                </div>
+
+
+                                Form sizing
+                                <div class="mb-3">
+                                <input class="form-control form-control-lg" id="sizingInputLg" type="text" placeholder=".form-control-lg">
+                                </div>
+                                <div class="mb-3">
+                                <input class="form-control form-control" id="sizingInput" type="text" placeholder=".form-control">
+                                </div>
+                                <div class="mb-0">
+                                <input class="form-control form-control-sm" id="sizingInputSm" type="text" placeholder=".form-control-sm">
+                                </div>
+
+                                Grouping
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">@</span>
+                                    <input class="form-control" type="text" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" />
+                                </div>
+                                <div class="input-group mb-3">
+                                    <input class="form-control" type="text" placeholder="Recipient's username" aria-label="Recipient's username" aria-describedby="basic-addon2" />
+                                    <span class="input-group-text" id="basic-addon2">@example.com</span>
+                                </div>
+
+                                Buttons<br>
+                                <button class="btn btn-primary me-1 mb-1" type="button">Primary</button>
+                                            <button class="btn btn-secondary me-1 mb-1" type="button">Secondary</button>
+                                            <button class="btn btn-success me-1 mb-1" type="button">Success</button>
+                                            <button class="btn btn-danger me-1 mb-1" type="button">Danger</button>
+                                            <button class="btn btn-warning me-1 mb-1" type="button">Warning</button>
+                                            <button class="btn btn-info me-1 mb-1" type="button">Info</button>
+
+
+                                <br><br>
+                                <button class="btn btn-outline-primary me-1 mb-1" type="button">Primary</button>
+                                <button class="btn btn-outline-secondary me-1 mb-1" type="button">Secondary</button>
+                                <button class="btn btn-outline-success me-1 mb-1" type="button">Success</button>
+                                <button class="btn btn-outline-danger me-1 mb-1" type="button">Danger</button>
+                                <button class="btn btn-outline-warning me-1 mb-1" type="button">Warning</button>
+                                <button class="btn btn-outline-info me-1 mb-1" type="button">Info</button>
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-4 mx-auto" style="max-width: 80%">
+                    <div class="card-header"><h4>Date Picker</h4></div>
+                    <div class="card-body">
+                        <input class="form-control datepicker">
+                    </div>
+                </div>
+
+
+
+                <div class="mx-auto" style="width: 80%">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card" style="max-width: 100%">
+                        <div class="card-body">
+                            <div id="echart-temp" style="min-height: 320px; width: 100%"></div>
+                        </div>
+                        </div>
+
+                    </div>
+                    <div class="col-6">
+                        <div class="card" style="max-width: 100%">
+                        <div class="card-body">
+                            <div id="echart-temp2" style="min-height: 320px; width: 100%"></div>
+                        </div>
+                    </div>
+
+                    </div>
+                </div>
+                </div>
+            </div>
+
+
+            </main>
+        </div>
+    </div>
+
+
+
+    <button id="rightSidebarToggle" class="right-sidebar-toggle">
+        <i class="bi bi-gear"></i>
+    </button>
+
+    <div class="right-sidebar">
+        <div class="right-sidebar-header">
+            <h6 class="mb-0">Appearance Settings</h6>
+            <button class="right-sidebar-close" id="rightSidebarClose">
+                <i class="bi bi-x-lg"></i>
+            </button>
+        </div>
+        <div class="right-sidebar-content">
+            <div class="setting-item">
+                <div class="layout-options">
+                    <button class="layout-option" data-mode="default">
+                        <div class="layout-preview">
+                            <div class="preview-header"></div>
+                            <div class="preview-content">
+                                <div class="preview-sidebar"></div>
+                                <div class="preview-main"></div>
+                            </div>
+                        </div>
+                        <span>Default</span>
+                    </button>
+                    <button class="layout-option" data-mode="slim">
+                        <div class="layout-preview">
+                            <div class="preview-header slim"></div>
+                            <div class="preview-content">
+                                <div class="preview-sidebar slim"></div>
+                                <div class="preview-main"></div>
+                            </div>
+                        </div>
+                        <span>Slim</span>
+                    </button>
+                    <button class="layout-option" data-mode="horizontal">
+                        <div class="layout-preview">
+                            <div class="preview-header"></div>
+                            <div class="preview-content horizontal">
+                                <div class="preview-topbar"></div>
+                                <div class="preview-main"></div>
+                            </div>
+                        </div>
+                        <span>Horizontal</span>
+                    </button>
+                    <button class="layout-option" data-mode="default" id="returnFromHorizontal" style="display: none;">
+                        <div class="layout-preview">
+                            <div class="preview-header"></div>
+                            <div class="preview-content">
+                                <div class="preview-sidebar"></div>
+                                <div class="preview-main"></div>
+                            </div>
+                        </div>
+                        <span>Return to Default</span>
+                    </button>
+                    <button class="layout-option" data-mode="hidden">
+                        <div class="layout-preview">
+                            <div class="preview-content">
+                                <div class="preview-main full-width"></div>
+                            </div>
+                        </div>
+                        <span>Hidden</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.1.8/js/dataTables.bootstrap5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/echarts/5.5.0/echarts.min.js" integrity="sha512-k37wQcV4v2h6jgYf5IUz1MoSKPpDs630XGSmCaCCOXxy2awgAWKHGZWr9nMyGgk3IOxA1NxdkN8r1JHgkUtMoQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+
+
+    <script src="assets/js/header.js"></script>
+    <script src="assets/js/sidebar.js"></script>
+    <script>
+        $(document).ready(function () {
+            // Password visibility toggle
+            $('#togglePassword').on('click', function () {
+                const passwordInput = $('#password');
+                const icon = $(this).find('i');
+
+                if (passwordInput.attr('type') === 'password') {
+                    passwordInput.attr('type', 'text');
+                    icon.removeClass('bi-eye').addClass('bi-eye-slash');
+                } else {
+                    passwordInput.attr('type', 'password');
+                    icon.removeClass('bi-eye-slash').addClass('bi-eye');
+                }
+            });
+        });
+
+
+        new DataTable('#example');
+
+
+        $(".datepicker").flatpickr();
+
+
+        var option;
+        option = {
+            xAxis: {
+                type: 'category',
+                data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+            },
+            yAxis: {
+                type: 'value',
+                show: false
+            },
+            tooltip: {
+                trigger: 'item'
+            },
+            series: [
+                {
+                    data: [820, 932, 901, 934, 1290, 1330, 1320],
+                    type: 'line',
+                    smooth: true,
+                    areaStyle: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                        {
+                            offset: 0,
+                            color: 'rgba(58,77,233,0.2)'
+                        },
+                        {
+                            offset: 1,
+                            color: 'rgba(58,77,233,0)'
+                        }
+                        ])
+                    },
+                    lineStyle: {
+                        type: 'dashed'
+                    },
+                }
+            ]
+        };
+        var chartDom = document.getElementById('echart-temp');
+        var myChart = echarts.init(chartDom);
+        option && myChart.setOption(option);
+
+        var chartDom2 = document.getElementById('echart-temp2');
+        var myChart2 = echarts.init(chartDom2);
+        option && myChart2.setOption(option);
+
+
+        window.onresize = function() {
+            myChart.resize();
+            myChart2.resize();
+        };
+    </script>
+</body>
+
+</html>

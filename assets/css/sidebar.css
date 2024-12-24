@@ -1,0 +1,825 @@
+.sidebar {
+    height: calc(100vh - var(--header-bar-height));
+    position: relative;
+    top: var(--header-bar-height);
+    transition: width 0.5s;
+    transition: height 0.5s;
+    padding-top: 1rem;
+    max-width: 250px;
+    border-right: 1px solid rgba(0,0,0,0.2);
+}
+
+.sidebar.collapsed {
+    width: var(--sidebar-collapsed-width);
+}
+
+.sidebar-content {
+    overflow-y: auto;
+    height: calc(100% - 50px);
+}
+
+/* Tree View Styles */
+.tree-view {
+    list-style: none;
+    padding-left: 0;
+}
+
+.tree-view ul {
+    list-style: none;
+    padding-left: 20px;
+    display: none;
+}
+
+.tree-view li {
+    padding: 5px 0;
+}
+
+.tree-item {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    font-size: 1rem;
+    text-decoration: none;
+    color: inherit;
+}
+
+.tree-item:hover {
+    text-decoration: none;
+    color: inherit;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.tree-item i {
+    font-size: 0.9em;
+}
+
+.collapsed .tree-view ul {
+    display: none;
+}
+
+.collapsed .tree-view > li > span {
+    display: block;
+}
+
+.collapsed .tree-view > li:hover > ul {
+    display: none;
+}
+
+.collapsed .tree-view > li > ul.hover-panel {
+    display: block;
+    position: fixed;
+    left: var(--sidebar-collapsed-width);
+    background: var(--bg-color);
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    min-width: 200px;
+    margin-left: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+.collapsed .tree-view > li > ul.hover-panel::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 15px;
+    width: 10px;
+    height: 10px;
+    background: var(--bg-color);
+    border-left: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    transform: rotate(45deg);
+}
+
+.collapse-container {
+    position: absolute;
+    bottom: 10px;
+    width: 100%;
+    width: calc(100% - 20px);
+    text-align: center;
+
+}
+/* Collapse Button - Updated Styles */
+.collapse-btn {
+    width: 100%;
+    border: none;
+    transition: all 0.3s;
+    color: var(--bs-body-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.collapse-btn i {
+    font-size: 1.1rem;
+}
+
+.collapse-icon {
+    transition: transform 0.3s;
+}
+
+.collapsed .collapse-icon {
+    transform: rotate(180deg);
+}
+
+.collapsed .collapse-text {
+    display: none;
+}
+
+/* Center the icon when collapsed */
+.collapsed .collapse-btn {
+    justify-content: center;
+}
+
+/* Collapsed state styles */
+.collapsed .tree-item {
+    justify-content: center;
+    font-size: 1rem;
+    padding: 5px;
+}
+
+.collapsed .tree-view > li > .tree-item .item-name {
+    display: none;
+}
+
+.collapsed .tree-view > li:hover > ul .item-name {
+    display: inline-block;
+}
+
+.collapsed .tree-view > li:hover > ul .tree-item {
+    justify-content: flex-start;
+    padding: 8px 12px;
+    border-radius: 4px;
+}
+
+.collapsed .tree-view > li:hover > ul .tree-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+/* Add these new styles */
+.hover-panel-header {
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+/* Mobile menu button */
+#mobileMenuBtn {
+    display: none;
+    padding: 0.5rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    color: inherit;
+}
+
+/* Mobile sidebar styles */
+@media (max-width: 1024px)  {
+    #mobileMenuBtn {
+        display: block !important;
+    }
+
+    .collapse-container {
+        display: none;
+    }
+
+    #sidebar {
+        position: absolute;
+        left: -100%;
+        bottom: 0;
+        z-index: 1050;
+        max-width: 100vw;
+        width: 100%;
+        transition: left 0.3s ease;
+    }
+    .horizontal #sidebar {
+        height: auto;
+        top: -100%;
+        left: unset !important;
+        bottom: unset !important;
+        transition: top 0.5s;
+    }
+    .horizontal #sidebar.mobile-show{
+        top: 70px;
+        left: unset !important;
+    }
+    .horizontal #sidebar.mobile-show.slim {
+        top: 34px;
+        left: unset !important;
+    }
+    #sidebar.mobile-show {
+        left: 0;
+    }
+
+    .sidebar-mobile-open::after {
+        content: '';
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1040;
+    }
+    .horizontal #sidebar {
+        display: block;
+    }
+    .top-nav {
+        display: none !important;
+    }
+    /* Adjust main content for mobile */
+
+    #mainContent {
+        padding-left: 10px !important
+    }
+
+}
+
+/* Fix hover panel styles */
+.collapsed .tree-view > li > ul.hover-panel {
+    margin-top: -35px;
+    display: block;
+    position: fixed;
+    left: var(--sidebar-collapsed-width);
+    background: var(--bg-color);
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    min-width: 200px;
+    margin-left: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1000;
+}
+
+
+
+.hover-panel::before {
+    content: '';
+    position: absolute;
+    left: -6px;
+    top: 15px;  /* Changed from bottom positioning */
+    width: 10px;
+    height: 10px;
+    background: var(--bg-color);
+    border-left: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    transform: rotate(45deg);
+}
+
+.collapsed .tree-view > li > ul.hover-panel .item-name {
+    display: inline-block !important;
+}
+
+/* Ensure icons remain visible in collapsed state */
+.collapsed .tree-item i {
+    display: block;
+    margin: 0;
+}
+
+/* Add triangle indicator styles */
+.tree-item.has-children {
+    position: relative;
+    padding-left: 25px;  /* Make space for the triangle */
+}
+
+.tree-item.has-children::before {
+    content: '';
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    transition: transform 0.3s ease;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid gray;
+}
+
+.tree-item.has-children.open::before {
+    transform: translateY(-50%) rotate(0);
+}
+
+/* Adjust for collapsed state */
+.collapsed .tree-item.has-children {
+    padding-left: 10px;  /* Reset padding in collapsed state */
+}
+
+.collapsed .tree-item.has-children::before {
+    display: none;  /* Hide triangle in collapsed state */
+}
+
+/* Show triangle in hover panel */
+.hover-panel .tree-item.has-children {
+    padding-left: 25px;  /* Make space for the triangle */
+}
+
+.hover-panel .tree-item.has-children::before {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    transition: transform 0.3s ease;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid gray;
+    display: block;  /* Ensure triangle is visible */
+}
+
+.hover-panel .tree-item.has-children.open::before {
+    transform: translateY(-50%) rotate(0);
+}
+
+/* Show nested items in hover panel */
+.hover-panel ul {
+    display: none;  /* Initially hidden */
+}
+
+.hover-panel .tree-item.open + ul {
+    display: block;  /* Show when parent is open */
+    padding-left: 20px;  /* Indent nested items */
+}
+
+/* Improve hover panel interaction */
+.hover-panel {
+    pointer-events: auto !important;
+}
+
+.hover-panel .tree-item {
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 1001;
+}
+
+/* Ensure hover panel stays visible during interaction */
+.hover-panel:hover {
+    display: block !important;
+}
+
+/* Improve hover states */
+.hover-panel .tree-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.hover-panel {
+    position: fixed !important;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    z-index: 1050 !important;
+    min-width: 200px;
+    padding: 8px;
+    margin-left: 25px;
+    pointer-events: all !important;
+}
+
+/* Ensure all items in hover panel are clickable */
+.hover-panel * {
+    pointer-events: auto !important;
+}
+
+/* Improve hover panel item styles */
+.hover-panel .tree-item {
+    padding: 8px 12px;
+    margin: 2px 0;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+.hover-panel .tree-item:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.sidebar.slim {
+    height: calc(100vh - var(--header-bar-height-slim));
+    top: var(--header-bar-height-slim);
+}
+
+/* Horizontal Mode Styles */
+.horizontal .sidebar {
+    display: none; /* Hide original sidebar in horizontal mode */
+}
+
+.top-nav {
+    display: none;
+    /*position: fixed;*/
+    /*top: 70px;*/
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: auto;
+    background: var(--bg-color);
+    /*border-bottom: 1px solid var(--border-color);*/
+    z-index: 1040;
+    padding: 0.75rem 1rem;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.dark-mode .top-nav {
+    background: var(--dark-bg);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.horizontal .top-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* Top nav items */
+
+/*
+.top-nav .tree-item {
+    padding: 0.5rem;
+    border-radius: 4px;
+}
+*/
+
+.top-nav .tree-item i {
+    /*font-size: 1.2rem;*/
+    font-size: 1rem;
+    color: #999
+}
+
+.top-nav .item-name {
+    display: none;
+}
+
+/* Hover panel for top nav */
+.top-nav .hover-panel {
+    position: absolute;
+    top: calc(100% + 5px);
+    left: 50%;
+    transform: translateX(-50%);
+    min-width: 200px;
+}
+
+.top-nav .hover-panel::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-45deg);
+    width: 10px;
+    height: 10px;
+    background: var(--bg-color);
+    border-left: 1px solid var(--border-color);
+    border-top: 1px solid var(--border-color);
+}
+
+.dark-mode .top-nav .hover-panel::before {
+    background: var(--dark-bg);
+}
+
+/* Adjust main content for horizontal mode */
+.horizontal #mainContent {
+    margin-left: 0 !important;
+    width: 100% !important;
+}
+
+/* Center align items in horizontal mode */
+.horizontal .top-nav {
+    justify-content: center;
+    z-index: 1060 !important;
+}
+
+/*
+.horizontal .top-nav .tree-item {
+    padding: 0.5rem 1rem;
+    justify-content: center;
+}
+*/
+
+/* Remove triangle indicators in horizontal mode */
+.horizontal .top-nav .tree-item.has-children::before {
+    display: none;
+}
+
+/* Adjust hover panel positioning in horizontal mode */
+.horizontal .top-nav .hover-panel {
+    position: absolute !important;
+    top: 100% !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin-top: 8px;
+    margin-left: 0;
+}
+
+/* Update arrow positioning for horizontal mode */
+.horizontal .top-nav .hover-panel::before {
+    content: '';
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-45deg) !important;
+    width: 10px;
+    height: 10px;
+    border-left: none !important;
+    border-top: 1px solid var(--border-color) !important;
+    border-right: 1px solid var(--border-color) !important;
+    border-bottom: none !important;
+}
+
+.dark-mode .horizontal .top-nav .hover-panel::before {
+    background: var(--dark-bg);
+}
+
+/* Ensure proper z-index and width */
+.horizontal .top-nav .hover-panel {
+    z-index: 2050 !important;
+    min-width: 200px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.dark-mode .horizontal .top-nav .hover-panel {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+/* Show triangle indicators in hover panel submenus */
+.horizontal .top-nav .hover-panel .tree-item.has-children::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    transition: transform 0.3s ease;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid gray;
+    display: block;
+}
+.horizontal .top-nav .hover-panel .tree-item.has-children + ul {
+    display: none;
+}
+/* Update horizontal mode styles */
+.horizontal .top-nav .item-name {
+    display: inline-block; /* Show names in horizontal mode */
+    /*margin-left: 0.5rem;*/
+    /*font-size: 0.9rem;*/
+    color: #999;
+    font-size: 0.8rem;
+}
+
+.horizontal .top-nav .tree-item {
+    /*padding: 0.5rem 1rem;*/
+    justify-content: flex-start; /* Align items to start */
+    /*min-width: 120px; */ /* Ensure enough space for text */
+}
+
+/* Adjust spacing in horizontal mode */
+.horizontal .top-nav {
+    padding: 0rem 1rem;
+    gap: 1rem; /* Increase gap between items */
+}
+
+/* Ensure proper positioning context */
+.horizontal .top-nav-item {
+    position: relative;
+}
+
+/* Update hover panel styles for horizontal mode */
+.horizontal .hover-panel {
+    position: fixed !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin-top: 8px;
+    margin-left: 0;
+    z-index: 1060;
+}
+
+/*
+.horizontal .top-nav-item {
+    position: relative;
+}
+*/
+
+/* Ensure hover panel stays above other elements */
+.horizontal .hover-panel {
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+}
+
+.dark-mode.horizontal .hover-panel {
+    background: var(--dark-bg);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+.hover-panel.child-panel {
+    display: none;
+}
+/* Add these new styles for cascading panels */
+.horizontal .hover-panel.child-panel {
+    position: absolute !important;
+    left: 100% !important;
+    top: 0 ;
+    transform: none !important;
+    margin-top: 0 !important;
+    margin-left: 0px !important;
+}
+
+/* Update arrow for child panels */
+.horizontal .hover-panel.child-panel::before {
+    content: '';
+    width: 0;
+    height: 0;
+}
+
+.dark-mode .horizontal .hover-panel.child-panel::before {
+    background: var(--dark-bg);
+}
+
+/* Ensure parent items in hover panel show indicator for submenus */
+.horizontal .hover-panel .tree-item.has-children {
+    position: relative;
+    padding-right: 25px; /* Make space for the arrow */
+}
+
+.horizontal .hover-panel .tree-item.has-children::after {
+    content: '';
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%) rotate(-90deg);
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid gray;
+}
+
+/* Ensure proper stacking */
+.horizontal .hover-panel {
+    position: absolute !important;
+}
+
+/* Hide nested panels by default */
+.horizontal .hover-panel .hover-panel {
+    display: none !important;
+}
+
+/* Ensure panels stay visible during interaction */
+.horizontal .hover-panel.active {
+    display: block !important;
+}
+
+/* Top nav default state */
+.top-nav {
+    /*height: 60px;*/
+    padding: 0.75rem 1rem;
+}
+
+/*
+.top-nav .tree-item {
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+}
+*/
+
+/*
+.top-nav .tree-item i {
+    font-size: 1.2rem;
+}
+*/
+
+/* Top nav slim state */
+.top-nav.slim {
+    height: 32px;
+    padding: 0.25rem 0.5rem;
+}
+
+.top-nav.slim .tree-item {
+    font-size: 0.875rem;
+    padding: 0 0.75rem;
+}
+
+.top-nav.slim .tree-item i {
+    font-size: 1rem;
+}
+
+/* Adjust hover panel positioning for slim state */
+.top-nav.slim .hover-panel {
+    top: 40px;
+}
+
+/* Adjust main content margin for different states */
+.horizontal #mainContent {
+    margin-top: 60px;
+}
+.horizontal .top-nav{
+    background-color: transparent;
+}
+.horizontal .top-nav.slim + #mainContent {
+    margin-top: 40px;
+}
+
+
+
+.horizontal .header-bar.slim + .top-nav {
+    top: 30px; /* Slim header height */
+}
+
+
+/* Ensure proper spacing in different modes */
+.horizontal .top-nav .tree-item {
+    transition: all 0.3s ease;
+}
+
+.dark-mode.horizontal .top-nav.slim {
+    box-shadow: 0 1px 3px rgba(0,0,0,0.3);
+}
+
+/* Update top nav styles for better responsiveness */
+
+/*
+.top-nav {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    background: var(--bg-color);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 1040;
+    padding: 0.75rem 1rem;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+*/
+
+/* Adjust top nav positioning when header is slim */
+.header-bar.slim + .top-nav {
+    top: 30px;
+    padding: 0.25rem 1rem;
+}
+
+/* Center top nav items */
+.horizontal .top-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .top-nav {
+        padding: 0.5rem;
+        overflow-x: auto;
+        justify-content: flex-start;
+    }
+
+    .horizontal .top-nav {
+        gap: 0.5rem;
+    }
+
+    .top-nav .tree-item {
+        padding: 0.5rem;
+        min-width: auto;
+    }
+
+    /* Adjust main content margin for mobile */
+    .horizontal #mainContent {
+        margin-top: 120px;
+    }
+
+    .horizontal .header-bar.slim + .top-nav + #mainContent {
+        margin-top: 80px;
+    }
+}
+
+/* Improve hover panel positioning in horizontal mode */
+.horizontal .hover-panel {
+    position: fixed !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    margin-top: 8px;
+    margin-left: 0;
+    z-index: 1060;
+}
+
+/* Ensure proper spacing between items */
+.top-nav-item {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+/* Hide scrollbar but keep functionality */
+.top-nav::-webkit-scrollbar {
+    display: none;
+}
+.top-nav {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
